@@ -6,10 +6,10 @@
 deployment:
   tasks:
     - export PHP=/opt/cpanel/ea-php85/root/usr/bin/php
-    - export COMPOSER=/usr/local/bin/composer
+    - export COMPOSER_BIN=/usr/local/bin/composer
     - export DEPLOYPATH=$HOME/repositories/alaise-crm
     - cd $DEPLOYPATH
-    - $PHP $COMPOSER install --no-dev --optimize-autoloader --no-interaction --no-progress
+    - $PHP $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction --no-progress
     - $PHP artisan migrate --force
     - $PHP artisan optimize
     - $PHP artisan view:cache
