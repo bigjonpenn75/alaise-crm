@@ -1,0 +1,16 @@
+---
+# cPanel Git Version Control deployment for crm.alaise.co.uk.
+#
+# Every release: cPanel → Git Version Control → Manage → Pull or Deploy →
+# "Update from Remote" then "Deploy HEAD Commit". Set-up steps are in README.md.
+deployment:
+  tasks:
+    - export PHP=/opt/cpanel/ea-php85/root/usr/bin/php
+    - export COMPOSER=/usr/local/bin/composer
+    - export DEPLOYPATH=$HOME/repositories/alaise-crm
+    - cd $DEPLOYPATH
+    - $PHP $COMPOSER install --no-dev --optimize-autoloader --no-interaction --no-progress
+    - $PHP artisan migrate --force
+    - $PHP artisan optimize
+    - $PHP artisan view:cache
+    - chmod -R ug+rwX storage bootstrap/cache

@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../views';
+@source '../../app';
+
+@theme {
+    --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --color-brand-50: #f0f6fb;
+    --color-brand-100: #dbe9f4;
+    --color-brand-500: #2f7ab8;
+    --color-brand-600: #24659b;
+    --color-brand-700: #1d517d;
+    --color-brand-900: #132f48;
+}
+
+@layer base {
+    [x-cloak] { display: none !important; }
+    body { @apply bg-slate-100 text-slate-800 antialiased; }
+}
+
+@layer components {
+    .input {
+        @apply block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-xs
+            placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 focus:outline-none;
+    }
+    .btn {
+        @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-md px-3.5 py-2 text-sm font-medium
+            transition focus:ring-2 focus:ring-brand-100 focus:outline-none disabled:opacity-50;
+    }
+    .btn-primary { @apply bg-brand-600 text-white hover:bg-brand-700; }
+    .btn-secondary { @apply border border-slate-300 bg-white text-slate-700 hover:bg-slate-50; }
+    .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+    .btn-sm { @apply px-2.5 py-1 text-xs; }
+    .link { @apply text-brand-600 hover:text-brand-700 hover:underline; }
+
+    .data-table { @apply w-full text-left text-sm; }
+    .data-table thead th { @apply border-b border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold tracking-wide whitespace-nowrap text-slate-500 uppercase; }
+    .data-table tbody td { @apply border-b border-slate-100 px-3 py-2 align-top; }
+    .data-table tbody tr:hover td { @apply bg-slate-50/60; }
+
+    /* Dense day-by-day report grids */
+    .grid-table { @apply w-full border-collapse text-sm tabular-nums; }
+    .grid-table th { @apply border border-slate-200 bg-slate-50 px-2 py-1.5 text-center text-xs font-semibold whitespace-nowrap text-slate-600; }
+    .grid-table td { @apply border border-slate-200 px-2 py-1 text-right whitespace-nowrap; }
+    .grid-table td.label { @apply text-left text-slate-600; }
+    .grid-table tr.week td { @apply bg-brand-50 font-semibold; }
+    .grid-table tr.total td { @apply bg-brand-900 font-semibold text-white; }
+    .grid-table th.group { @apply bg-brand-600 text-white; }
+    .grid-table .zero { @apply text-slate-300; }
+    .grid-table .edge { @apply border-l-2 border-l-slate-400; }
+}
